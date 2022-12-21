@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить экскурси</title>
+</head>
+<body>
+<p>Добавить экскурсию</p>
+<form action="{% url 'index' %}">
+    {% csrf_token %}
+    <button type="submit">Назад</button>
+</form>
+</body>
+</html>
+

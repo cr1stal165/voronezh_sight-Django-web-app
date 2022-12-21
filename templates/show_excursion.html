@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Экскурсии</title>
+</head>
+<body>
+<div class="header">
+    <p class="enc">Энциклопедия Воронежа</p>
+    <span><a class="exc" href="{% url 'show_excursion' %}" type="submit">Экскурсии</a></span>
+    <span><a class="arch" href="{% url 'show_architectors' %} " type="submit">Архитекторы</a></span>
+    <span><a class="ind" href="{% url 'index' %} " type="submit">Главная</a></span>
+</div>
+
+<div class="line"></div>
+<h1 align="center">Экскурсии</h1>
+{% for excursion in page_obj.object_list %}
+    <center>
+        <div class="card_exc" align="center">
+            <h2>{{ excursion.excursion_name }}</h2>
+            <p class="time">Время экскурсии - {{ excursion.excursion_time }} час</p>
+            <p class="time1">Телефон для связи - {{ excursion.phone }}</p>
+            <p class="time2">Стоимость - {{ excursion.price }}р</p>
+        </div>
+    </center>
+{% endfor %}
+
+<center>
+    <div class="paginat">
+        <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a class="number_page" href="?page=1">Первая</a>
+            <a class="number_page" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="number_page" class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="number_page" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a class="number_page" href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+        {% endif %}
+    </span>
+    </div>
+</center>
+
+<style>
+
+    .number_page{
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .time {
+        font-family: 'Montserrat',sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        float: left;
+        margin-left: 30px;
+        color: #000000;
+    }
+    .time1 {
+        margin-top: -10px;
+        font-family: 'Montserrat',sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        float: left;
+        margin-left: 30px;
+        color: #000000;
+    }
+
+    .time2 {
+        margin-top: 60px;
+        float: left;
+        font-family: 'Montserrat',sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        margin-left: -400px;
+        color: #000000;
+    }
+
+    h2 {
+
+        width: 594px;
+        height: 73px;
+        left: 454px;
+        top: 257px;
+
+        font-family: 'Montserrat Medium', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 39px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.065em;
+
+        color: #000000;
+    }
+
+    .card_exc {
+        width: 695px;
+        height: 345px;
+        margin-bottom: 30px;
+        border: 2px solid #BC9C5F;
+        border-radius: 60px;
+    }
+
+    h1 {
+        width: 262px;
+        height: 50px;
+        margin-left: 100px;
+        top: 172px;
+
+        font-family: 'Montserrat Medium', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 50px;
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.065em;
+
+        color: #1E3839;
+    }
+
+    .line {
+        position: absolute;
+        width: 1120px;
+        height: 2px;
+        margin-left: 360px;
+        margin-top: 55px;
+        background-color: #1E3839;
+    }
+
+
+    .header {
+        height: 103px;
+        background-color: #1E3839;
+    }
+
+    .enc {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        color: #FFFFFF;
+        position: absolute;
+        margin-left: 32px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .exc {
+        /* Экскурсии */
+
+
+        position: absolute;
+        margin-left: 772px;
+
+
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        align-items: center;
+        margin-top: 40px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    .arch {
+        /* Архитекторы */
+
+        position: absolute;
+        margin-left: 971px;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        margin-top: 40px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    .ind {
+        position: absolute;
+        margin-left: 1200px;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        margin-top: 40px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    body {
+        background-color: #F3F0EB;
+    }
+
+</style>
+</body>
+</html>

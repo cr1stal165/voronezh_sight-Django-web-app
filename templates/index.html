@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Главная</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index_style.css' %}"/>
+    <link rel="icon" href="{% static 'img/leaf.png' %}" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Montserrat&display=swap"
+          rel="stylesheet">
+
+</head>
+<body>
+<div class="header_class">
+    <p class="main_name" align="center">Энциклопедия Воронежа</p>
+    <span><a class="exc" href="{% url 'show_excursion' %}" type="submit">Экскурсии</a></span>
+    <span><a class="arch" href="{% url 'show_architectors' %} " type="submit">Архитекторы</a></span>
+    <form action="{% url 'index' %}">
+        <span><input class="search_class" name="search" id="search" type="search" placeholder="Search"></span>
+        <button type="submit">Поиск</button>
+    </form>
+    <p class="vrn">Открой для себя Воронеж</p>
+    <p class="descript">Воронеж – колыбель русского флота. Именно здесь русский Царь Петр I приказал возвести первые
+        верфи.
+
+        Самые главные и интересные достопримечательности столицы Черноземья — фото, описания, расположение,
+        экскурсии.</p>
+    <div class="shape1"></div>
+    <div class="img1"></div>
+    <div class="img2"></div>
+    <div class="img3"></div>
+    <div class="img4"></div>
+    <div class="img5"></div>
+
+</div>
+<br><br><br><br><br>
+
+<div class="line"></div>
+<p class="sight_main">Достопримечательности</p>
+<div class="add_sight">
+    <center><a class="add_sight_text" href="{% url 'add_sight' %}" type="submit">Добавить</a></center>
+</div>
+<br>
+
+{% for sight in page_obj.object_list %}
+
+    <div class="card">
+        <center>
+            <form action="show_sight.html" method="post">
+                <center>
+                    <h2>{{ sight.sight_name }}</h2>
+                </center>
+                <p class="opis">Дата постройки - {{ sight.building_date }}</p>
+                <input type="hidden" name="arch_id" value="{{ sight.architect_id }}">
+                <p class="opis">{{ sight.architect.name }}</p>
+
+                <div class="button_more"><a class="more_text"
+                                            href="{% url 'show_sight' sight_id=sight.id his_id=sight.id %}">Подробнее</a>
+                </div>
+
+            </form>
+        </center>
+    </div>
+{% endfor %}
+
+<div class="filter">
+    <form action="{% url 'index' %}">
+        <p class="filter_name">Фильтр</p>
+        <p class="filter_date_text">Дата постройки</p>
+
+        <div class="slider">
+            <input name="filter_sight" type="range" min="0" max="2022" value="1900"
+                   oninput="rangeValue.innerText = this.value">
+            <p id="rangeValue">1000</p>
+        </div>
+        <p class="filter_author_text">Автор</p>
+
+        <select name="arch">
+            {% for sight in exc %}
+                <option name="arch" value="{{ sight.architect_id }}">{{ sight.architect.name }}</option>
+            {% endfor %}
+        </select>
+
+        <button class="filter_button" type="submit">Применить</button>
+    </form>
+</div>
+
+<br><br>
+
+<center>
+    <div class="paginat">
+        <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a class="number_page" href="?page=1">Первая</a>
+            <a class="number_page" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="number_page" class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a class="number_page" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a class="number_page" href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+        {% endif %}
+    </span>
+    </div>
+</center>
+
+<br><br>
+<div class="menu" align="center">
+
+    <style>
+        button {
+            background-color: white;
+            font-family: 'Montserrat Medium', sans-serif;
+            position: absolute;
+            width: 90px;
+            height: 39px;
+            left: 1350px;
+            top: 36px;
+            border-radius: 10px;
+            border-color: white;
+        }
+    </style>
+</div>
+</body>
+</html>
+

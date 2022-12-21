@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ exc.sight_name }}</title>
+</head>
+<body>
+<div class="header">
+    <p class="enc">Энциклопедия Воронежа</p>
+    <span><a class="exc" href="{% url 'show_excursion' %}" type="submit">Экскурсии</a></span>
+    <span><a class="arch" href="{% url 'show_architectors' %} " type="submit">Архитекторы</a></span>
+    <span><a class="ind" href="{% url 'index' %} " type="submit">Главная</a></span>
+</div>
+
+<form>
+    {% csrf_token %}
+    <h1>{{ exc.sight_name }}</h1>
+    <img class="img_gg" height="300px" width="500px" src="{{ exc.image.url }}" alt="">
+    <div class="line"></div>
+    <p class="his">Текст - {{ hs.history }}</p>
+    <p class="born">Дата постройки - {{ exc.building_date }}</p>
+    <p class="ar">Архитектор - {{ exc.architect.name }}</p>
+    <p class="year">Годы жизни - {{ exc.architect.year_of_birth }}-{{ exc.architect.year_of_death }}</p>
+    <p class="address">р-н. {{ exc.address.district }}, {{ exc.address.street }}, {{ exc.address.house }}</p>
+    <img class="icon" src="{% static 'img/icon.svg' %}">
+    <br><br>
+    <span ><a class="but1_text" href="{% url 'delete_sight' sight_id=exc.id his_id=exc.id %}">Удалить</a></span>
+    <span ><a class="but2_text" href="{% url 'edit_sight' sight_id=exc.id his_id=exc.id %}">Редактировать</a></span>
+
+    <br><br>
+</form>
+
+<style>
+
+    span{
+        margin-left: 80px;
+    }
+
+    .but2_text{
+        font-family: "Montserrat",sans-serif;
+        font-size: 20px;
+        color: black;
+    }
+
+
+    .but1_text{
+        font-family: "Montserrat",sans-serif;
+        font-size: 20px;
+        color: black;
+    }
+
+
+    .icon {
+        position: absolute;
+        margin-left: 870px;
+        top: 710px;
+    }
+
+    .address {
+        position: absolute;
+        margin-left: 920px;
+        top: 690px;
+
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        color: #000000;
+    }
+
+    .line {
+        position: absolute;
+        width: 342px;
+        height: 2px;
+        margin-top: 180px;
+        margin-left: -120px;
+        background-color: #BC9C5F;
+        transform: rotate(90deg);
+    }
+
+    .year {
+        margin-left: 75px;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        letter-spacing: 0.045em;
+
+        color: #000000;
+    }
+
+    .ar {
+        margin-left: 75px;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        letter-spacing: 0.045em;
+
+        color: #000000;
+    }
+
+    .born {
+        margin-left: 75px;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        letter-spacing: 0.045em;
+
+        color: #000000;
+    }
+
+    h1 {
+
+
+        margin-left: 75px;
+        margin-top: 73px;
+
+        font-family: 'Montserrat Medium', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 49px;
+        /* identical to box height */
+
+        display: flex;
+        align-items: center;
+        letter-spacing: 0.065em;
+
+        color: #000000;
+    }
+
+    .img_gg {
+        position: absolute;
+        width: 587px;
+        height: 477px;
+        left: 872px;
+        top: 200px;
+        border-radius: 30px;
+    }
+
+    .his {
+        width: 613px;
+        margin-left: 76px;
+        top: 267px;
+        font-family: 'Montserrat Light', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 29px;
+        letter-spacing: 0.01em;
+
+        color: #000000;
+    }
+
+    .header {
+        height: 103px;
+        background-color: #1E3839;
+    }
+
+    .enc {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 32px;
+        color: #FFFFFF;
+        position: absolute;
+        margin-left: 32px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .exc {
+        /* Экскурсии */
+
+
+        position: absolute;
+        margin-left: 772px;
+
+
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        align-items: center;
+        margin-top: 40px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    .arch {
+        /* Архитекторы */
+
+        position: absolute;
+        margin-left: 920px;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        margin-top: 40px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    .ind {
+        position: absolute;
+        margin-left: 1100px;
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+        margin-top: 40px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    body {
+        background-color: #F3F0EB;
+    }
+</style>
+</body>
+</html>

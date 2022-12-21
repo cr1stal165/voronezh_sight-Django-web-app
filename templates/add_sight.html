@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить достопримечательность</title>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+<div class="header">
+    <p class="enc">Энциклопедия Воронежа</p>
+    <span><a class="exc" href="{% url 'show_excursion' %}" type="submit">Экскурсии</a></span>
+    <span><a class="arch" href="{% url 'show_architectors' %} " type="submit">Архитекторы</a></span>
+    <span><a class="ind" href="{% url 'index' %} " type="submit">Главная</a></span>
+</div>
+
+<form action="{% url 'confirm_add_sight' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p class="add_sig">Добавление достопримечательности</p>
+    <p class="input_data">Введите данные</p>
+    <br>
+    <p class="sight">Название достопримечательности</p>
+    <input class="inp_sight" name="sight" id="sight" placeholder="Введите название" required/>
+    <br>
+    <br>
+    <p class="born_data">Дата основания</p>
+    <input class="inp_data" type="number" name="build_date" id="build_date" placeholder="Введите дату постройки"
+           required/>
+    <br>
+    <br>
+    <p class="arch_data">Данные об архитекторе</p>
+    <p class="fio">ФИО архитектора</p>
+    <input class="inp_fio" type="text" name="fio" id="fio" placeholder="Введите фио архитектора" required/>
+    <br>
+    <br>
+    <p class="date_birth">Дата рождения</p>
+    <input class="inp_date_birth" type="text" name="date_birth" id="date_birth" placeholder="Введите дату рождения"
+           required/>
+    <br>
+    <br>
+    <p class="date_dead">Дата смерти</p>
+    <input class="inp_date_dead" type="text" name="date_death" id="date_death" placeholder="Введите дату смерти"/>
+    <br>
+    <br>
+    <p class="address">Адресные данные</p>
+    <p class="district">Район</p>
+    <input class="inp_district" name="district" id="district" placeholder="Введите район" required/>
+    <br>
+    <br>
+    <p class="street">Улица</p>
+    <input class="inp_street" name="street" id="street" placeholder="Введите улицу" required/>
+    <br>
+    <br>
+    <p class="house">Дом</p>
+    <input class="inp_house" name="house" id="house" placeholder="Введите дом"/>
+    <br>
+    <br>
+    <br>
+    <p class="down_img">Загрузите изображение</p>
+    <input type="file" id="file-input-enc" class="inputfile" name="file-input" accept=".jpg, .png">
+    <p class="down" id="feedback1">Загрузить</p>
+    <br><br><br>
+    <p class="his">Введите историю</p>
+    <textarea class="his_inp" name="history_text" id="history_text" placeholder="История создания" required></textarea>
+
+    <br><br><br>
+    <button class="but" type="submit">Добавить</button>
+    <style>
+
+        .but {
+            position: absolute;
+            width: 260px;
+            height: 47px;
+            margin-left: 75px;
+            top: 1521px;
+            font-family: 'Montserrat',sans-serif;
+            font-size: 18px;
+            background: #FFFFFF;
+            border: 1px solid #BC9C5F;
+            border-radius: 10px;
+        }
+
+        .his_inp {
+            box-sizing: border-box;
+
+            position: absolute;
+            width: 604px;
+            height: 293px;
+            left: 701px;
+            top: 499px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            background: #F3F0EB;
+            border: 1px solid #BC9C5F;
+            border-radius: 10px;
+
+        }
+
+
+        .his {
+            position: absolute;
+            width: 499px;
+            height: 64px;
+            left: 701px;
+            top: 420px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+
+        .down {
+            position: absolute;
+            width: 260px;
+            height: 47px;
+            left: 701px;
+            top: 335px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            letter-spacing: 0.065em;
+
+            color: black;
+        }
+
+        .inputfile {
+            font-family: 'Montserrat', sans-serif;
+            position: absolute;
+            width: 260px;
+            height: 47px;
+            left: 701px;
+            top: 316px;
+        }
+
+        .inputfile::file-selector-button {
+            font-family: 'Montserrat', sans-serif;
+            height: 30px;
+            width: 130px;
+            border-radius: 10px;
+            background: #FFFFFF;
+            border: 1px solid #BC9C5F;
+        }
+
+        .down_img {
+            position: absolute;
+            width: 499px;
+            height: 64px;
+            left: 701px;
+            top: 188px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 26px;
+            line-height: 32px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+        .inp_house {
+            font-family: 'Montserrat', sans-serif;
+            width: 300px;
+            height: 47px;
+            margin-left: 75px;
+            top: 1449px;
+
+            background: #F3F0EB;
+            border: 1px solid #BC9C5F;
+            border-radius: 10px;
+        }
+
+        .house {
+            margin-left: 75px;
+            top: 1385px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+        .inp_street {
+            font-family: 'Montserrat', sans-serif;
+            width: 300px;
+            height: 47px;
+            margin-left: 75px;
+            top: 1312px;
+
+            background: #F3F0EB;
+            border: 1px solid #BC9C5F;
+            border-radius: 10px;
+        }
+
+        .street {
+            margin-left: 75px;
+            top: 1248px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+        .inp_district {
+            font-family: 'Montserrat', sans-serif;
+            width: 300px;
+            height: 47px;
+            margin-left: 75px;
+            top: 1177px;
+
+            background: #F3F0EB;
+            border: 1px solid #BC9C5F;
+            border-radius: 10px;
+        }
+
+        .district {
+            margin-left: 75px;
+            top: 1115px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+        .address {
+            margin-left: 75px;
+            top: 1051px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 26px;
+            line-height: 32px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.01em;
+
+            color: #000000;
+        }
+
+        .inp_date_dead {
+            font-family: 'Montserrat', sans-serif;
+            width: 300px;
+            height: 47px;
+            margin-left: 75px;
+            top: 979px;
+
+            background: #F3F0EB;
+            border: 1px solid #BC9C5F;
+            border-radius: 10px;
+        }
+
+        .date_dead {
+            margin-left: 75px;
+            top: 915px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+        .inp_date_birth {
+            font-family: 'Montserrat', sans-serif;
+            width: 300px;
+            height: 47px;
+            margin-left: 75px;
+            top: 842px;
+
+            background: #F3F0EB;
+            border: 1px solid #BC9C5F;
+            border-radius: 10px;
+        }
+
+        .date_birth {
+            margin-left: 75px;
+            top: 778px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+        .inp_fio {
+            font-family: 'Montserrat', sans-serif;
+            width: 300px;
+            height: 47px;
+            margin-left: 75px;
+            top: 707px;
+
+            background: #F3F0EB;
+            border: 1px solid #BC9C5F;
+            border-radius: 10px;
+        }
+
+        .fio {
+            margin-left: 75px;
+            top: 645px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+        .arch_data {
+            margin-left: 75px;
+            top: 581px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 26px;
+            line-height: 32px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+        .inp_data {
+            font-family: 'Montserrat', sans-serif;
+            width: 300px;
+            height: 47px;
+            margin-left: 75px;
+            top: 501px;
+
+            background: #F3F0EB;
+            border: 1px solid #BC9C5F;
+            border-radius: 10px;
+        }
+
+        .born_data {
+            margin-left: 75px;
+            top: 438px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+        .inp_sight {
+            font-family: 'Montserrat', sans-serif;
+            width: 300px;
+            height: 47px;
+            margin-left: 75px;
+            top: 367px;
+
+            background: #F3F0EB;
+            border: 1px solid #BC9C5F;
+            border-radius: 10px;
+        }
+
+        .sight {
+            margin-left: 75px;
+            top: 304px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+        }
+
+        .input_data {
+            margin-left: 75px;
+            top: 242px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 26px;
+            line-height: 32px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #000000;
+
+        }
+
+        .add_sig {
+            margin-left: 75px;
+            top: 173px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 35px;
+            line-height: 49px;
+            /* identical to box height */
+
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.065em;
+
+            color: #1E3839;
+        }
+
+        textarea {
+            resize: none;
+            height: 200px;
+            width: 400px;
+        }
+
+        .header {
+            height: 103px;
+            background-color: #1E3839;
+        }
+
+        .enc {
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 32px;
+            color: #FFFFFF;
+            position: absolute;
+            margin-left: 32px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .exc {
+            /* Экскурсии */
+
+
+            position: absolute;
+            margin-left: 772px;
+
+
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+            align-items: center;
+            margin-top: 40px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .arch {
+            /* Архитекторы */
+
+            position: absolute;
+            margin-left: 971px;
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+            margin-top: 40px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        .ind {
+            position: absolute;
+            margin-left: 1200px;
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 29px;
+            margin-top: 40px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #F3F0EB;
+        }
+
+    </style>
+    <br><br><br>
+</form>
+</body>
+</html>
+

@@ -1,0 +1,285 @@
+span {
+    display: inline-block;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+body {
+    background-color: #F3F0EB;
+}
+
+.card {
+    width: 695px;
+    height: 245px;
+    border: 2px solid #BC9C5F;
+    border-radius: 60px;
+    margin-top: 20px;
+}
+
+
+.sight_main {
+
+    width: 641px;
+    height: 50px;
+    margin-left: 44px;
+    top: 565px;
+
+    font-family: 'Montserrat Medium', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 50px;
+    color: #1E3839;
+}
+
+.line {
+    position: absolute;
+    width: 720px;
+    height: 2px;
+    left: 720px;
+    top: 590px;
+    display: flex;
+    background-color: #1E3839;
+}
+
+.button_more {
+    width: 158px;
+    height: 39px;
+    background: #BC9C5F;
+    border-radius: 10px;
+
+}
+
+.add_sight {
+    width: 158px;
+    height: 29px;
+    background-color: #BC9C5F;
+    border-radius: 11px;
+    margin-left: 40px;
+    padding-top: 10px;
+}
+
+.add_sight_text {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.more_text {
+    width: 141.41px;
+    height: 28.89px;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    padding: 5px 0 0 30px;
+}
+
+h2 {
+
+
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 39px;
+    letter-spacing: 0.065em;
+
+    color: #000000;
+}
+
+.opis {
+    font-family: 'Montserrat', sans-serif;
+}
+
+input:required {
+    border-width: 2px;
+    border-color: red;
+}
+
+.history_text {
+    width: 600px;
+}
+
+.header_class {
+    height: 477px;
+    background: #1E3839;
+    border-radius: 25px;
+}
+
+.main_name {
+    /* ЭНЦИКЛОПЕДИЯ ВОРОНЕЖА */
+
+    position: absolute;
+    width: 561px;
+    height: 71px;
+    margin-left: 26px;
+    margin-top: 16px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 39px;
+    display: flex;
+    align-items: center;
+
+    color: #FFFFFF;
+
+}
+
+.exc {
+    /* Экскурсии */
+
+
+    position: absolute;
+    width: 234px;
+    height: 71px;
+    margin-left: 572px;
+
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.arch {
+    /* Архитекторы */
+
+    position: absolute;
+    width: 234px;
+    height: 71px;
+    margin-left: 930px;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+a {
+    text-decoration: none;
+}
+
+.search_class {
+    /* поиск */
+    width: 190px;
+    height: 38px;
+    margin-left: 1219px;
+    background: #F3F0EB;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+
+}
+
+.vrn {
+    /* Открой для себя Воронеж */
+    position: absolute;
+    width: 853px;
+    height: 118px;
+    margin-left: 44px;
+    margin-top: 60px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+.descript {
+    position: absolute;
+    width: 610px;
+    height: 193px;
+    margin-left: 44px;
+    top: 253px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 29px;
+    letter-spacing: 0.01em;
+
+    color: #FFFFFF;
+}
+
+.img1 {
+    /* 1 */
+
+    position: absolute;
+    width: 243px;
+    height: 247px;
+    margin-left: 671px;
+    top: 297px;
+
+    background-image: url("/static/img/1.png");
+    border-radius: 30px;
+}
+
+.img2 {
+    position: absolute;
+    width: 181px;
+    height: 248px;
+    left: 943px;
+    top: 113px;
+
+    background-image: url("/static/img/1479042 1.png");
+    border-radius: 30px;
+}
+
+.img3 {
+    position: absolute;
+    width: 195px;
+    height: 149px;
+    left: 971px;
+    top: 381px;
+
+    background-image: url("/static/img/4.png");
+    border-radius: 30px;
+}
+
+.img4 {
+    position: absolute;
+    width: 243px;
+    height: 172px;
+    left: 1152px;
+    top: 120px;
+
+    background-image: url("/static/img/5.png");
+    border-radius: 30px;
+}
+
+.img5 {
+
+    position: absolute;
+    width: 246px;
+    height: 171px;
+    left: 1185px;
+    top: 310px;
+
+    background-image: url("/static/img/3.png");
+    border-radius: 30px;
+}
